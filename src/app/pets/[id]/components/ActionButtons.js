@@ -1,5 +1,7 @@
 'use client'
 
+import { deletePet } from "@/app/actions"
+
 function ActionButtons({ pet }) {
   return (
     <>
@@ -7,7 +9,7 @@ function ActionButtons({ pet }) {
         Adobt
       </button>}
 
-      <button className="w-[70px] border border-black rounded-md  hover:bg-red-400">
+      <button onClick={() => deletePet(pet.id)} className="w-[70px] border border-black rounded-md  hover:bg-red-400">
         Delete
       </button>
     </>
