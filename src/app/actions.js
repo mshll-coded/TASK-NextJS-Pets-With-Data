@@ -1,11 +1,14 @@
 'use server'
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 const baseURL = "https://pets-react-query-backend.eapi.joincoded.com"
+const headers = new Headers()
+headers.append("Content-Type", "application/json")
 
 export async function fetchPets() {
-  const response = await fetch(`${baseURL}/pets`, { next: { tags: ['pets'] } })
+  const response = await fetch(`${baseURL}/pets`)
   const pets = await response.json()
   return pets
 }
@@ -24,4 +27,24 @@ export async function fetchPetById(id) {
   if (!pet) redirect('/pets')
 
   return pet
+}
+
+export async function createPet(formData) {
+  const petData = {
+    ...Object.fromEntries(formData),
+    adopted: 0
+  }
+
+  console.log(petData)
+
+  const response = await fetch(`${baseURL}/pets`, {
+    headers,
+    method: "POST",
+    body: JSON.stringify(petData)
+  })
+
+  const pet = await response.json()
+
+  revalidatePath('/pets')
+  redirect(`/pets/${pet.id}`)
 }
