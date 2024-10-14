@@ -35,8 +35,6 @@ export async function createPet(formData) {
     adopted: 0
   }
 
-  console.log(petData)
-
   const response = await fetch(`${baseURL}/pets`, {
     headers,
     method: "POST",
@@ -47,4 +45,13 @@ export async function createPet(formData) {
 
   revalidatePath('/pets')
   redirect(`/pets/${pet.id}`)
+}
+
+export async function deletePet(id) {
+  const response = await fetch(`${baseURL}/pets/${id}`, {
+    method: "DELETE"
+  })
+
+  revalidatePath('/pets')
+  redirect('/pets')
 }
