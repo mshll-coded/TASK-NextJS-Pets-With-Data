@@ -1,4 +1,4 @@
-import { createPet } from "@/app/actions";
+import { createPet } from "@/actions";
 import Input from "@/components/Input";
 import { useState } from "react";
 

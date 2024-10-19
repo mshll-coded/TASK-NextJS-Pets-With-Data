@@ -1,6 +1,6 @@
 'use client'
 
-import { deletePet } from "@/app/actions"
+import { deletePet } from "@/actions"
 
 function ActionButtons({ pet }) {
   return (

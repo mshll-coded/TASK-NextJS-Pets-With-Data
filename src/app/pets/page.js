@@ -1,4 +1,4 @@
-import { fetchPets } from "@/app/actions";
+import { fetchPets } from "@/actions";
 
 import PetsContainer from "./components/PetsContainer";
 

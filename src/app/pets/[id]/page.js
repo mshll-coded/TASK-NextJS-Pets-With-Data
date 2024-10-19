@@ -1,4 +1,4 @@
-import { fetchPetById } from "@/app/actions";
+import { fetchPetById } from "@/actions";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
 import ActionButtons from "./components/ActionButtons";
