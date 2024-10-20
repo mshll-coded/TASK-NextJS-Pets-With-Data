@@ -44,6 +44,7 @@ export async function createPet(formData) {
   const pet = await response.json()
 
   revalidatePath('/pets')
+  revalidatePath('/pets/[id]', 'page')
   redirect(`/pets/${pet.id}`)
 }
 
@@ -53,5 +54,6 @@ export async function deletePet(id) {
   })
 
   revalidatePath('/pets')
+  revalidatePath('/pets/[id]', 'page')
   redirect('/pets')
 }
