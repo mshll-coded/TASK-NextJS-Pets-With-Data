@@ -1,19 +1,12 @@
 import ImageWithFallback from '@/components/ImageWithFallback';
-import { redirect } from 'next/navigation';
 
 import ActionButtons from './components/ActionButtons';
+import { fetchPetById } from '@/actions';
 
 async function PetDetailPage({ params }) {
   const { id } = await params;
 
-  let pet;
-  try {
-    const response = await fetch(`https://pets-react-query-backend.eapi.joincoded.com/pets/${id}`);
-    pet = await response.json();
-  } catch (error) {
-    console.error('No pet found');
-    redirect('/pets');
-  }
+  let pet = await fetchPetById(id);
 
   const { image, name, type, adopted } = pet;
 

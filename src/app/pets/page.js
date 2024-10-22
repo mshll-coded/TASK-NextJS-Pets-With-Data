@@ -1,8 +1,8 @@
+import { fetchPets } from '@/actions';
 import PetsContainer from './components/PetsContainer';
 
 async function PetsPage() {
-  const prompise = await fetch('https://pets-react-query-backend.eapi.joincoded.com/pets');
-  const pets = await prompise.json();
+  const pets = await fetchPets();
 
   return <PetsContainer pets={pets} />;
 }
